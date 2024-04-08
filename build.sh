@@ -12,41 +12,14 @@
 
 SECONDS=0 # builtin bash timer
 ZIPNAME="RyzenKernel-AOSP-Ginkgo-$(TZ=Asia/Jakarta date +"%Y%m%d-%H%M").zip"
-TC_DIR="/workspace/toolchain/linux-x86"
-CLANG_DIR="/workspace/toolchain/linux-x86/clang-r498229b"
-GCC_64_DIR="/workspace/toolchain/aarch64-linux-android-4.9"
-GCC_32_DIR="/workspace/toolchain/arm-linux-androideabi-4.9"
 AK3_DIR="/workspace/android/AnyKernel3"
 DEFCONFIG="vendor/ginkgo-perf_defconfig"
 
-export PATH="$CLANG_DIR/bin:$PATH"
 export KBUILD_BUILD_USER="EdwiinKJ"
 export KBUILD_BUILD_HOST="RastaMod69"
 export KBUILD_BUILD_VERSION="1"
 
-if ! [ -d "${CLANG_DIR}" ]; then
-echo "Clang not found! Cloning to ${TC_DIR}..."
-if ! git clone --depth=1 https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 ${TC_DIR}; then
-echo "Cloning failed! Aborting..."
-exit 1
-fi
-fi
-
-if ! [ -d "${GCC_64_DIR}" ]; then
-echo "gcc not found! Cloning to ${GCC_64_DIR}..."
-if ! git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git ${GCC_64_DIR}; then
-echo "Cloning failed! Aborting..."
-exit 1
-fi
-fi
-
-if ! [ -d "${GCC_32_DIR}" ]; then
-echo "gcc_32 not found! Cloning to ${GCC_32_DIR}..."
-if ! git clone --depth=1 -b lineage-19.1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git ${GCC_32_DIR}; then
-echo "Cloning failed! Aborting..."
-exit 1
-fi
-fi
+sudo apt-get -y install bc clang llvm lld gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi lld
 
 if [[ $1 = "-r" || $1 = "--regen" ]]; then
 make O=out ARCH=arm64 $DEFCONFIG savedefconfig
