@@ -18,6 +18,7 @@ jobs:
              git clone --depth 1 https://github.com/pachof/kernel_xiaomi_ginkgo_neutrino_modernium.git -b qpr2 kernel
              cd kernel
              chmod 777 build.sh
+             scripts/config --disable SYSTEM_REVOCATION_KEYS
              ./build.sh
 
        - name: Uploading ZIP.
