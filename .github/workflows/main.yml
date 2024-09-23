@@ -17,8 +17,8 @@ jobs:
          run: |
              git clone --depth 1 https://github.com/pachof/kernel_xiaomi_ginkgo_neutrino_modernium.git -b qpr2 kernel
              cd kernel
-             chmod 777 build.sh
-             ./build.sh
+             chmod 777 build-A11.sh
+             ./build-A11.sh
 
        - name: Uploading ZIP.
          run: |
