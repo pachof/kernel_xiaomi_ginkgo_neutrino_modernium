@@ -28,7 +28,7 @@ jobs:
          uses: softprops/action-gh-release@v1
          with:
            files: |
-             *.zip
+             kernel/*.zip
            name: kernel-${{ github.run_id }}
            tag_name: ${{ github.run_id }}
            body: |
