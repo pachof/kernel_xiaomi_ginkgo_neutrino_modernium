@@ -23,4 +23,4 @@ jobs:
        - name: Uploading ZIP.
          run: |
              cd kernel
-             curl -T *.zip https://pixeldrain.com/api/file/ && echo "
+             curl -T RyzenKernel-AOSP-Ginkgo-*.zip https://pixeldrain.com/api/file/ && echo "
